@@ -5,7 +5,7 @@ function ProtectAdmin() {
     const par = useParams();
 
     if (localStorage.getItem('auth_role') == 1) {
-        navigate(par);
+      <Outlet/>
     }
     else {
         navigate('/');

@@ -31,30 +31,41 @@ export default function ItemView() {
         }
     }
 
-    const ProductId = count.id;
     ////Add to Cart Requirements
     const AddToCart = (e) => {
         e.preventDefault();
         const data = {
-            product_id: ProductId,
             product_qty: qty,
+            product_id: count[0].id,
         }
-        // console.log(ProductId);
+            axios.post(`/api/add-to-cart`, data).then(res => {
+                if (res.data.status === 201) {
+                    Toast2.fire({
+                        icon: 'success',
+                        title: res.data.message
+                    })
+                } else if (res.data.status === 409) {
+                    Toast2.fire({
+                        icon: 'error',
+                        title: res.data.message
+                    })
 
-        axios.post(`/api/add-to-cart`, data).then(res => {
-            if (res.data.status === 201) {
-                Toast2.fire({
-                    icon: 'success',
-                    title: res.data.message
-                })
-            } else if (res.data.status === 401) {
-                Toast2.fire({
-                    icon: 'error',
-                    title: res.data.message
-                })
+                }
+                 else if (res.data.status === 401) {
+                    Toast2.fire({
+                        icon: 'error',
+                        title: res.data.message
+                    })
 
-            }
-        })
+                }
+                 else if (res.data.status === 404) {
+                    Toast2.fire({
+                        icon: 'error',
+                        title: res.data.message
+                    })
+
+                }
+            });
 
     }
 

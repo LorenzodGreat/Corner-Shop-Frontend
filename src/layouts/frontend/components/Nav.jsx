@@ -36,41 +36,23 @@ const userNavigation = [
 ]
 
 function MainNav() {
-    const navigate = useNavigate();
 
-    const Logout = (e) => {
-        e.preventDefault();
-
-        axios.post(`/api/logout`).then(res => {
-            if (res.data.status === 200) {
-                localStorage.removeItem('auth_token');
-                localStorage.removeItem('auth_name');
-                localStorage.removeItem('auth_email');
-                localStorage.removeItem('auth_phone');
-                localStorage.removeItem('auth_role');
-                navigate('/login');
-                Toast.fire({
-                    icon: 'success',
-                    title: 'Logout Successfully'
-                });
-            }
-        });
-    }
     const [list, setCategoryList] = useState([]);
     const [open, setOpen] = useState(false)
     var Category_HTML =
         list.map((info) => {
             return (
                 <div class="relative flex" key={info.id}>
-                    <Link to={`collections/${info.name}`} class="border-transparent text-gray-900 hover:text-indigo-800 relative z-10 flex items-center transition-colors ease-out duration-200 text-sm font-medium border-b-2 -mb-px pt-px" id="headlessui-popover-Linkbutton-5" type="button" aria-expanded="false">{info.name}
-                    </Link>
+                    
+                    <a href={`collections/${info.name}`} class="border-transparent text-gray-900 hover:text-indigo-800 relative z-10 flex items-center transition-colors ease-out duration-200 text-sm font-medium border-b-2 -mb-px pt-px" id="headlessui-popover-Linkbutton-5" type="button" aria-expanded="false">{info.name}
+                    </a>
                 </div>
             )
         });
 
     useEffect(() => {
 
-        axios.get(`api/Category`).then(res => {
+        axios.get(`api/getcollections`).then(res => {
             if (res.status === 200) {
 
                 setCategoryList(res.data.category);
@@ -250,7 +232,7 @@ function MainNav() {
 
                                     {/* Cart */}
                                     <div className="ml-4 flow-root lg:ml-8">
-                                        <a href="#" className="group -m-2 p-2 flex items-center">
+                                        <a href="/" className="group -m-2 p-2 flex items-center">
                                             <ShoppingBagIcon
                                                 className="flex-shrink-0 h-6 w-6 text-gray-400 group-hover:text-gray-500"
                                                 aria-hidden="true"

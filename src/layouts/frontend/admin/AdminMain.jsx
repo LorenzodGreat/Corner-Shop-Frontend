@@ -30,7 +30,7 @@ const Toast = Swal.mixin({
 })
 
 const navigation = [
-    { name: 'Dashboard', href: '/Admin/Dashboard', icon: HomeIcon, current: true },
+    { name: 'Dashboard', href: '/Admin/Dashboard', icon: HomeIcon, current: false },
     { name: 'Category', href: '/Admin/Category', icon: UsersIcon, current: false },
     { name: 'Products', href: '/Admin/Products', icon: FolderIcon, current: false },
     { name: 'Orders', href: '/Admin/Orders', icon: CalendarIcon, current: false },
@@ -38,7 +38,7 @@ const navigation = [
 ]
 
 const userNavigation = [
-    { name: 'Your Profile', href: '#' },
+    { name: 'Your Dashboard', href: '#' },
     { name: 'Settings', href: '#' },
 ]
 
@@ -71,14 +71,6 @@ export default function AdminMain() {
 
     return (
         <>
-            {/*
-        This example requires updating your template:
-
-        ```
-        <html class="h-full bg-gray-100">
-        <body class="h-full">
-        ```
-      */}
             <div>
                 <Transition.Root show={sidebarOpen} as={Fragment}>
                     <Dialog as="div" className="fixed inset-0 flex z-40 md:hidden" onClose={setSidebarOpen}>
@@ -124,11 +116,7 @@ export default function AdminMain() {
                                     </div>
                                 </Transition.Child>
                                 <div className="flex-shrink-0 flex items-center px-4">
-                                    <img
-                                        className="h-8 w-auto"
-                                        src="https://tailwindui.com/img/logos/workflow-logo-indigo-300-mark-white-text.svg"
-                                        alt="Workflow"
-                                    />
+                                <h1 className=' text-2xl font-semibold text-amber-400'>CornershopJa</h1>
                                 </div>
                                 <div className="mt-5 flex-1 h-0 overflow-y-auto">
                                     <nav className="px-2 space-y-1">
@@ -160,11 +148,7 @@ export default function AdminMain() {
                     {/* Sidebar component, swap this element with another sidebar if you like */}
                     <div className="flex flex-col flex-grow pt-5 bg-gradient-to-r from-sky-800 to-cyan-600 text-white overflow-y-auto">
                         <div className="flex items-center flex-shrink-0 px-4">
-                            <img
-                                className="h-8 w-auto"
-                                src="https://tailwindui.com/img/logos/workflow-logo-indigo-300-mark-white-text.svg"
-                                alt="Workflow"
-                            />
+                        <h1 className=' text-2xl font-semibold text-amber-400'>CornershopJa</h1>
                         </div>
                         <div className="mt-5 flex-1 flex flex-col">
                             <nav className="flex-1 px-2 pb-4 space-y-1">
@@ -231,7 +215,7 @@ export default function AdminMain() {
                                             <span className="sr-only">Open user menu</span>
                                             <img
                                                 className="h-8 w-8 rounded-full"
-                                                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                                                src="https://previews.123rf.com/images/get4net/get4net2111/get4net211100902/176667614-classic-user-profile-picture-layout-for-online-social-media-dashboard.jpg"
                                                 alt=""
                                             />
                                         </Menu.Button>

@@ -17,7 +17,7 @@ export default function UserProfile() {
         <div class="flex">
           <img
             class="h-24 w-24 rounded-full ring-4 ring-white sm:h-32 sm:w-32"
-            src="https://images.unsplash.com/photo-1463453091185-61582044d556?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=8&amp;w=1024&amp;h=1024&amp;q=80"
+            src="https://previews.123rf.com/images/get4net/get4net2111/get4net211100902/176667614-classic-user-profile-picture-layout-for-online-social-media-dashboard.jpg"
             alt=""
           />
         </div>

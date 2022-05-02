@@ -21,6 +21,7 @@ import ItemView from './layouts/frontend/main/CollectionSelection';
 import EditCategory from './layouts/frontend/admin/category/EditCategory';
 import EditProduct from './layouts/frontend/admin/products/EditProducts';
 import ProtectAdmin from './layouts/auth/AdminProtect';
+import MyCart from './layouts/frontend/main/Cart';
 
 axios.defaults.baseURL = "http://127.0.0.1:8000/";
 axios.defaults.headers.post['Content-Type'] = 'application/json';
@@ -59,11 +60,12 @@ function App() {
 
         <Route element={<MainUser />} >
           <Route path='/User/Dashboard' element={<UserDashboard />} />
+          <Route path='/User/Dashboard' element={<UserDashboard />} />
           <Route path='/User/Profile' element={<UserProfile />} />
-          <Route path='/User/Orders' element={<UserOrder />} />
           {/* <Route path='/User/Settings' element={<Register />} /> */}
         </Route>
 
+          <Route path='/Cart' element={<MyCart />} />
 
         {/* <Route element={<ProtectAdmin />} > */}
         <Route element={<AdminMain />} >
