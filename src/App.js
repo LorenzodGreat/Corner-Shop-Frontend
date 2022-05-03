@@ -67,7 +67,7 @@ function App() {
 
           <Route path='/Cart' element={<MyCart />} />
 
-        {/* <Route element={<ProtectAdmin />} > */}
+        <Route element={<ProtectAdmin />} >
         <Route element={<AdminMain />} >
           <Route path='/Admin/Dashboard' element={<AdminDash />} />
           <Route path='/Admin/Category' element={<AdminCategory />} />
@@ -78,7 +78,7 @@ function App() {
           <Route path='/Admin/Payments' element={<UserOrder />} />
           {/* <Route path='/User/Settings' element={<Register />} /> */}
         </Route>
-        {/* </Route> */}
+        </Route>
 
 
 

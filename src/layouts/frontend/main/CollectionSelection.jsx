@@ -18,14 +18,14 @@ export default function ItemView() {
     var Product_HTML = " ";
 
     // Quantity Count Button
-    const HandledIncrement = () => {
-        if (count.qty < 1) {
+    const HandledIncrement = (e) => {
+        if (count[0].qty > qty){
             SetQuantity(prevCount => prevCount + 1)
         }
 
     }
-    const HandledDecrement = () => {
-        if (count.qty > 1) {
+    const HandledDecrement = (e) => {
+        if (qty > 1) {
 
             SetQuantity(prevCount => prevCount - 1)
         }
@@ -38,34 +38,34 @@ export default function ItemView() {
             product_qty: qty,
             product_id: count[0].id,
         }
-            axios.post(`/api/add-to-cart`, data).then(res => {
-                if (res.data.status === 201) {
-                    Toast2.fire({
-                        icon: 'success',
-                        title: res.data.message
-                    })
-                } else if (res.data.status === 409) {
-                    Toast2.fire({
-                        icon: 'error',
-                        title: res.data.message
-                    })
+        axios.post(`/api/add-to-cart`, data).then(res => {
+            if (res.data.status === 201) {
+                Toast2.fire({
+                    icon: 'success',
+                    title: res.data.message
+                })
+            } else if (res.data.status === 409) {
+                Toast2.fire({
+                    icon: 'error',
+                    title: res.data.message
+                })
 
-                }
-                 else if (res.data.status === 401) {
-                    Toast2.fire({
-                        icon: 'error',
-                        title: res.data.message
-                    })
+            }
+            else if (res.data.status === 401) {
+                Toast2.fire({
+                    icon: 'error',
+                    title: res.data.message
+                })
 
-                }
-                 else if (res.data.status === 404) {
-                    Toast2.fire({
-                        icon: 'error',
-                        title: res.data.message
-                    })
+            }
+            else if (res.data.status === 404) {
+                Toast2.fire({
+                    icon: 'error',
+                    title: res.data.message
+                })
 
-                }
-            });
+            }
+        });
 
     }
 
@@ -132,7 +132,8 @@ export default function ItemView() {
                                             <span class="ml-6 font-semibold text-red-500">{product.qty}</span>
                                             <div class="ml-auto  flex max">
                                                 <button onClick={HandledDecrement} className='p-3 rounded-l-xl  bg-cyan-800 font-bold border-0 text-white hover:bg-green-600' >-</button>
-                                                <input className='p-3 w-12' type="text" value={qty} name="qty" id="qty" />
+                                                {/* <input className='p-3 w-12' type="text" onChange={(e)=>{e.target.value = qty }} value={qty} name="qty" id="qty" /> */}
+                                                <div className='p-3 w-12' type="text"  name="qty" id="qty">{qty}</div>
                                                 <button onClick={HandledIncrement} className='p-3 bg-cyan-800 rounded-r-xl font-bold border-0 text-white hover:bg-green-600' >+</button>
                                             </div>
                                         </div>

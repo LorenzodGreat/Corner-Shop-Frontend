@@ -1,38 +1,171 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
+@keyframes cube {
   from {
-    transform: rotate(0deg);
+      transform: scale(0) rotate(0deg) translate(-50%, -50%);
+      opacity: 1;
   }
   to {
-    transform: rotate(360deg);
+      transform: scale(20) rotate(960deg) translate(-50%, -50%);
+      opacity: 0;
   }
+}
+
+.background {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  background: #ffffff;
+  overflow: hidden;
+  z-index: -20;
+}
+.background li {
+  position: absolute;
+  top: 80vh;
+  left: 45vw;
+  width: 10px;
+  height: 10px;
+  border: solid 1px #fad709;
+  color: transparent;
+  transform-origin: top left;
+  transform: scale(0) rotate(0deg) translate(-50%, -50%);
+  animation: cube 13s ease-in forwards infinite;
+}
+/* undefined */
+.background li:nth-child(0) {
+  animation-delay: 0s;
+  left: 10vw;
+  top: 77vh;
+  border-color: #ffffff;
+}
+
+.background li:nth-child(1) {
+  animation-delay: 2s;
+  left: 49vw;
+  top: 30vh;
+}
+
+.background li:nth-child(2) {
+  animation-delay: 4s;
+  left: 11vw;
+  top: 68vh;
+}
+
+.background li:nth-child(3) {
+  animation-delay: 6s;
+  left: 61vw;
+  top: 42vh;
+  border-color: #ffffff;
+}
+
+.background li:nth-child(4) {
+  animation-delay: 8s;
+  left: 51vw;
+  top: 33vh;
+}
+
+.background li:nth-child(5) {
+  animation-delay: 10s;
+  left: 35vw;
+  top: 83vh;
+  border-color: #ffffff;
+}
+
+.background li:nth-child(6) {
+  animation-delay: 12s;
+  left: 18vw;
+  top: 92vh;
+}
+
+.background li:nth-child(7) {
+  animation-delay: 14s;
+  left: 72vw;
+  top: 3vh;
+  border-color: #ffffff;
+}
+
+.background li:nth-child(8) {
+  animation-delay: 16s;
+  left: 29vw;
+  top: 13vh;
+  border-color: #ffffff;
+}
+
+.background li:nth-child(9) {
+  animation-delay: 18s;
+  left: 1vw;
+  top: 51vh;
+  border-color: #ffffff;
+}
+
+.background li:nth-child(10) {
+  animation-delay: 20s;
+  left: 80vw;
+  top: 86vh;
+}
+
+.background li:nth-child(11) {
+  animation-delay: 22s;
+  left: 66vw;
+  top: 25vh;
+}
+
+.background li:nth-child(12) {
+  animation-delay: 24s;
+  left: 93vw;
+  top: 7vh;
+}
+
+.background li:nth-child(13) {
+  animation-delay: 26s;
+  left: 56vw;
+  top: 63vh;
+}
+
+.background li:nth-child(14) {
+  animation-delay: 28s;
+  left: 41vw;
+  top: 17vh;
+}
+
+.background li:nth-child(15) {
+  animation-delay: 30s;
+  left: 97vw;
+  top: 94vh;
+}
+
+.background li:nth-child(16) {
+  animation-delay: 32s;
+  left: 85vw;
+  top: 45vh;
+}
+
+.background li:nth-child(17) {
+  animation-delay: 34s;
+  left: 23vw;
+  top: 57vh;
+  border-color: #ffffff;
+}
+/* ===== Scrollbar CSS ===== */
+/* Firefox */
+* {
+  scrollbar-width: auto;
+  scrollbar-color: #2dd2fb #444857;
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 17px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #444857;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #2dd2fb;
+  border-radius: 0px;
+  border: 1px none #444857;
 }

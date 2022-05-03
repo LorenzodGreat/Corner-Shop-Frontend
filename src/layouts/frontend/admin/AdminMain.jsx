@@ -1,4 +1,5 @@
 import { Fragment, useState } from 'react'
+import '../../../App.css';
 import { Dialog, Menu, Transition } from '@headlessui/react'
 import {
     BellIcon,
@@ -262,6 +263,28 @@ export default function AdminMain() {
                                 {/* Replace with your content */}
                                 <Outlet />
                                 {/* /End replace */}
+                                <ul className="background">
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ul>
                             </div>
                         </div>
                     </main>

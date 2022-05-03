@@ -1,11 +1,79 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import  Swal  from 'sweetalert2';
 
 export default function AdminDash() {
     const people = [
         { name: 'Lindsay Walton', title: 'Front-end Developer', email: 'lindsay.walton@example.com', role: 'Member' },
         // More people...
     ]
+
+    const navigate = useNavigate();
+
+    const Toast2 = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+    })
+
+    const deleteUser = (e, id) => {
+        e.preventDefault();
+
+        const thisClicked = e.currentTarget;
+        thisClicked.innerText = "Deleting";
+
+        axios.post(`api/Delete-User/${id}`).then(res => {
+            if (res.data.status === 200) {
+                Toast2.fire({
+                    icon: 'success',
+                    title: res.data.message
+                })
+                navigate('/Admin/Dashboard');
+                // thisClicked.closest("tr").remove();
+            }
+            else if (res.data.status === 404) {
+                Toast2.fire({
+                    icon: 'warnig',
+                    title: res.data.message,
+                })
+                thisClicked.innerText = "Delete";
+            }
+        })
+
+    }
+
+    const restoreUser = (e, id) => {
+        e.preventDefault();
+
+        const thisClicked = e.currentTarget;
+        thisClicked.innerText = "Restoring";
+
+        axios.post(`api/Restore-User/${id}`).then(res => {
+            if (res.data.status === 200) {
+                Toast2.fire({
+                    icon: 'success',
+                    title: res.data.message
+                })
+                navigate('/Admin/Dashboard');
+                // thisClicked.closest("tr").remove();
+            }
+            else if (res.data.status === 404) {
+                Toast2.fire({
+                    icon: 'warnig',
+                    title: res.data.message,
+                })
+                thisClicked.innerText = "Delete";
+            }
+        })
+
+    }
 
     const [current, setCurrent] = useState(1)
     const [per, setPerPage] = useState(4)
@@ -124,8 +192,8 @@ export default function AdminDash() {
                 </div>
             </div>
             <div className="mt-8 flex flex-col">
-                <div className="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
-                    <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+                <div className="-my-2 -mx-1 overflow-x-auto sm:-mx-1 lg:-mx-2">
+                    <div className="inline-block min-w-full py-2 align-middle md:px-2 lg:px-2">
                         <div className="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
                             <table className="min-w-full divide-y divide-gray-300">
                                 <thead className="bg-gray-50">
@@ -143,6 +211,9 @@ export default function AdminDash() {
                                             Email
                                         </th>
                                         <th scope="col" className="px-4 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                            Status
+                                        </th>
+                                        <th scope="col" className="px-4 py-3.5 text-left text-sm font-semibold text-gray-900">
                                             Modify
                                         </th>
                                     </tr>
@@ -157,8 +228,39 @@ export default function AdminDash() {
                                             <td className="whitespace-nowrap p-4 text-sm text-gray-500">{person.telephone}</td>
                                             <td className="whitespace-nowrap p-4 text-sm text-gray-500">{person.email}</td>
                                             <td className="whitespace-nowrap p-4 text-sm text-gray-500">
-                                                {person.email}
-                                                </td>
+                                                {person.status == 0 ?
+                                                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                                        <span className="inline-flex rounded-full bg-green-100 px-2 text-xs font-semibold leading-5 text-green-800">
+                                                            Active
+                                                        </span>
+                                                    </td>
+                                                    :
+                                                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                                        <span className="inline-flex rounded-full bg-red-100 px-2 text-xs font-semibold leading-5 text-red-800">
+                                                            Not Active
+                                                        </span>
+                                                    </td>
+                                                }
+                                            </td>
+                                            <td className="whitespace-nowrap p-4 text-sm text-gray-500">
+                                                {person.status == 0 ?
+                                                    <button
+                                                        onClick={(e) => deleteUser(e, person.id)}
+                                                        type="button"
+                                                        className="-ml-px relative inline-flex items-center px-4 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500"
+                                                    >
+                                                        Delete
+                                                    </button>
+                                                    :
+                                                    <button
+                                                        onClick={(e) => restoreUser(e, person.id)}
+                                                        type="button"
+                                                        className="-ml-px relative inline-flex items-center px-4 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500"
+                                                    >
+                                                        Restore
+                                                    </button>
+                                                }
+                                            </td>
                                         </tr>
                                     ))}
                                 </tbody>

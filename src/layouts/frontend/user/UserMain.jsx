@@ -1,4 +1,5 @@
 import { Fragment } from 'react'
+import '../../../App.css';
 import { Menu, Popover, Transition } from '@headlessui/react'
 import {
     AcademicCapIcon,
@@ -399,6 +400,28 @@ export default function MainUser() {
                 <main className='p-2'>
 
                     <Outlet />
+                    <ul className="background">
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ul>
                 </main>
                 <footer>
                     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 lg:max-w-7xl">

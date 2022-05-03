@@ -1,15 +1,20 @@
-import { Link, useNavigate, Outlet,useParams } from "react-router-dom";
+import { useLocation, Outlet, Navigate } from "react-router-dom";
 
-function ProtectAdmin() {
-    const navigate = useNavigate();
-    const par = useParams();
+const ProtectAdmin = () => {
 
-    if (localStorage.getItem('auth_role') == 1) {
-      <Outlet/>
-    }
-    else {
-        navigate('/');
-    }
-}
+  const location = useLocation();
+
+  let accessBooleanInfo = localStorage.getItem("auth_role");
+  let access = JSON.parse(accessBooleanInfo);
+  console.log(access);
+  return access === 1 ? (
+    <Outlet />
+  ) : (
+    (<Navigate to="/" />
+    )
+  );
+};
 
 export default ProtectAdmin;
+
+
